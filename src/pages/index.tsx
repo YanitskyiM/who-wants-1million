@@ -24,20 +24,22 @@ export default function Home() {
         <meta property="og:image" content="/open-graph.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.main}>
-        <Image
-          src="/images/Hand.png"
-          width={624}
-          height={367}
-          alt="Picture of the author"
-        />
-        <div>
-          <h2 className={styles.title}>Who wants to be a millionaire?</h2>
-          <button className="base" role="button" onClick={playGame}>
-            Start
-          </button>
+      <main className={styles.main}>
+        <div className={styles.container}>
+          <Image
+            src="/images/Hand.png"
+            width={624}
+            height={367}
+            alt="Picture of the author"
+          />
+          <div>
+            <h2 className={styles.title}>Who wants to be a millionaire?</h2>
+            <button className="base" role="button" onClick={playGame}>
+              Start
+            </button>
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

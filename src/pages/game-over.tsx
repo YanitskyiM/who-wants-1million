@@ -2,18 +2,17 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/Over.module.css";
 import { Routes } from "@/constants/router";
-
-function convertToFormattedNumber(amount: number): string {
-  return parseFloat(amount.toString()).toLocaleString("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-}
+import { convertToFormattedNumber } from "@/utils/convertToFormattedNumber";
+import { useRecoilValue } from "recoil";
+import { reachedQuestion } from "../../store/atoms";
 
 export default function GameOver() {
   const router = useRouter();
+  const reachedQuestionValue = useRecoilValue(reachedQuestion);
 
-  const totalScore = convertToFormattedNumber(1000);
+  const finalReward = convertToFormattedNumber(
+    reachedQuestionValue?.reward ?? 0,
+  );
 
   return (
     <main className={styles.main}>
@@ -25,7 +24,7 @@ export default function GameOver() {
       />
       <div>
         <h3 className={styles.subtitle}>Total score:</h3>
-        <h2 className={styles.title}>${totalScore} earned</h2>
+        <h2 className={styles.title}>${finalReward} earned</h2>
         <button
           className="base"
           role="link"

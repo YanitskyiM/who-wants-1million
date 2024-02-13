@@ -4,11 +4,16 @@ import { IGame, IQuestion } from "@/models/game";
 import styles from "@/styles/Game.module.css";
 import { useRouter } from "next/router";
 import { Routes } from "@/constants/router";
+import { Question } from "@/components/Question/Question";
+import { Progress } from "@/components/Progress/Progress";
+import { reachedQuestion } from "../../store/atoms";
+import { useSetRecoilState } from "recoil";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
 export default function Game() {
   const router = useRouter();
+  const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1); // Start with the first question
 
   const questionMap: { [id: number]: IQuestion } = gameQuestions.reduce(
@@ -34,6 +39,7 @@ export default function Game() {
     if (!currentQuestion.correctAnswerIds.includes(answerId)) {
       // letsPlayAudio && letsPlayAudio.pause();
       // wrongAnswer && wrongAnswer.play();
+      setReachedQuestion(questionMap[currentQuestionOrder - 1]);
       return await router.push(Routes.GAME_OVER);
     }
 
@@ -57,54 +63,6 @@ export default function Game() {
         onAnswerClick={handleChangeQuestion}
       />
       <Progress currentQuestion={currentQuestion} questions={gameQuestions} />
-    </div>
-  );
-}
-
-function Progress({
-  questions,
-  currentQuestion,
-}: {
-  questions: Array<IQuestion>;
-  currentQuestion: IQuestion;
-}) {
-  return (
-    <div>
-      {questions.map((question) => (
-        <div
-          key={question.id}
-          className={`${styles.progress_item} ${
-            currentQuestion.id === question.id ? styles.active_progress : ""
-          }`}
-        >
-          {question.reward} $
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function Question({
-  question: { answers, question },
-  onAnswerClick,
-}: {
-  question: IQuestion;
-  onAnswerClick: (id: number) => void;
-}) {
-  return (
-    <div>
-      <h2 className={styles.question_title}>{question}</h2>
-      <div className={styles.answer_block}>
-        {answers.map((answer) => (
-          <button
-            className={styles.answer_item}
-            key={answer.id}
-            onClick={() => onAnswerClick(answer.id)}
-          >
-            {answer.text}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
