@@ -26,9 +26,9 @@ export default function Game() {
     SOUND_ID.CORRECT_ANSWER,
   );
 
-  const questionMap: { [id: number]: IQuestion } = gameQuestions.reduce(
+  const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
     (map: { [id: number]: IQuestion }, question: IQuestion) => {
-      map[question.id] = question;
+      map[question.questionOrder] = question;
       return map;
     },
     {},
@@ -44,7 +44,7 @@ export default function Game() {
 
   const currentQuestion = questionMap[currentQuestionOrder];
 
-  const handleChangeQuestion = async (answerId: number) => {
+  const handleChangeQuestion = async (answerId: string) => {
     if (!currentQuestion.correctAnswerIds.includes(answerId)) {
       pauseBgSound();
       playGameOverSound();

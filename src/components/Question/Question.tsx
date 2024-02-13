@@ -7,7 +7,7 @@ export function Question({
   onAnswerClick,
 }: {
   question: IQuestion;
-  onAnswerClick: (id: number) => void;
+  onAnswerClick: (id: string) => void;
 }) {
   return (
     <div className={styles.container}>
@@ -16,7 +16,7 @@ export function Question({
         {answers.map((answer) => (
           <SvgButton
             key={answer.id}
-            order={"A"}
+            order={answer.id}
             title={answer.text}
             onClick={() => onAnswerClick(answer.id)}
           />

@@ -3,14 +3,15 @@ export interface IGame {
 }
 
 export interface IQuestion {
-  id: number;
+  id: string;
+  questionOrder: number;
   question: string;
   answers: Array<IAnswer>;
-  correctAnswerIds: [number];
+  correctAnswerIds: Array<string>;
   reward: number;
 }
 
 export interface IAnswer {
-  id: number;
+  id: string;
   text: string;
 }
