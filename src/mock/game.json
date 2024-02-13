@@ -144,20 +144,7 @@
       "order": 11
     },
     {
-      "id": "L",
-      "question": "Яка країна є найбільшим виробником кави у світі?",
-      "answers": [
-        { "id": "A", "text": "В'єтнам" },
-        { "id": "B", "text": "Бразилія" },
-        { "id": "C", "text": "Ефіопія" },
-        { "id": "D", "text": "Колумбія" }
-      ],
-      "correctAnswerIds": ["B"],
-      "reward": 1000000,
-      "order": 12
-    },
-    {
-      "id": "N",
+      "id": "l",
       "question": "Що таке Монна Ліза?",
       "answers": [
         { "id": "A", "text": "Книга" },
@@ -166,8 +153,8 @@
         { "id": "D", "text": "Пісня" }
       ],
       "correctAnswerIds": ["C"],
-      "reward": 4000000,
-      "order": 13
+      "reward": 1000000,
+      "order": 12
     }
   ]
 }

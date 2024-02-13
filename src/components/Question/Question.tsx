@@ -3,6 +3,8 @@ import styles from "./Question.module.css";
 import React, { useState } from "react";
 import { AnswerSvgButton } from "@/components/Question/AnswerSvgButton";
 
+const REVEAL_CORRECT_ANSWER_DURATION = 1500;
+
 export function Question({
   question: { answers, question, correctAnswerIds },
   onAnswerClick,
@@ -23,7 +25,7 @@ export function Question({
       } else {
         setIsWrong(true);
       }
-    }, 1500);
+    }, REVEAL_CORRECT_ANSWER_DURATION);
   };
 
   return (
