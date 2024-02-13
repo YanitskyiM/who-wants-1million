@@ -4,7 +4,7 @@ export interface IGame {
 
 export interface IQuestion {
   id: string;
-  questionOrder: number;
+  order: number;
   question: string;
   answers: Array<IAnswer>;
   correctAnswerIds: Array<string>;

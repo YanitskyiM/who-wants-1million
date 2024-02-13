@@ -11,7 +11,7 @@
       ],
       "correctAnswerIds": ["A"],
       "reward": 500,
-      "questionOrder": 1
+      "order": 1
     },
     {
       "id": "B",
@@ -24,7 +24,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 1000,
-      "questionOrder": 2
+      "order": 2
     },
     {
       "id": "C",
@@ -37,7 +37,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 2000,
-      "questionOrder": 3
+      "order": 3
     },
     {
       "id": "D",
@@ -50,7 +50,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 4000,
-      "questionOrder": 4
+      "order": 4
     },
     {
       "id": "E",
@@ -63,7 +63,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 8000,
-      "questionOrder": 5
+      "order": 5
     },
     {
       "id": "F",
@@ -76,7 +76,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 16000,
-      "questionOrder": 6
+      "order": 6
     },
     {
       "id": "G",
@@ -89,7 +89,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 32000,
-      "questionOrder": 7
+      "order": 7
     },
     {
       "id": "H",
@@ -102,7 +102,7 @@
       ],
       "correctAnswerIds": ["A"],
       "reward": 64000,
-      "questionOrder": 8
+      "order": 8
     },
     {
       "id": "I",
@@ -115,7 +115,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 125000,
-      "questionOrder": 9
+      "order": 9
     },
     {
       "id": "J",
@@ -128,7 +128,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 250000,
-      "questionOrder": 10
+      "order": 10
     },
     {
       "id": "K",
@@ -141,7 +141,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 500000,
-      "questionOrder": 11
+      "order": 11
     },
     {
       "id": "L",
@@ -154,7 +154,7 @@
       ],
       "correctAnswerIds": ["B"],
       "reward": 1000000,
-      "questionOrder": 12
+      "order": 12
     },
     {
       "id": "N",
@@ -167,7 +167,7 @@
       ],
       "correctAnswerIds": ["C"],
       "reward": 4000000,
-      "questionOrder": 13
+      "order": 13
     }
   ]
 }

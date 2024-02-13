@@ -3,10 +3,20 @@ import React from "react";
 export function Step({
   reward,
   isActive,
+  isPassed,
 }: {
   reward: string;
   isActive: boolean;
+  isPassed: boolean;
 }) {
+  const getStrokeColor = (): string => {
+    if (isActive) return "var(--orange-100)";
+    if (isPassed) return "var(--black-40)";
+    return "var(--black-100)";
+  };
+
+  const textStrokeColor = getStrokeColor();
+
   return (
     <li style={{ width: "100%" }}>
       <svg
@@ -36,7 +46,7 @@ export function Step({
           dominantBaseline="middle"
           fontSize="20"
           fontWeight={400}
-          fill={isActive ? "var(--orange-100)" : "black"}
+          fill={textStrokeColor}
         >
           ${reward}
         </text>

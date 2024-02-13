@@ -15,7 +15,7 @@ const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
 const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
   (map: { [id: number]: IQuestion }, question: IQuestion) => {
-    map[question.questionOrder] = question;
+    map[question.order] = question;
     return map;
   },
   {},

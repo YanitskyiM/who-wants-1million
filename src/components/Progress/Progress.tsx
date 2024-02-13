@@ -14,16 +14,19 @@ export function Progress({
   currentQuestion: IQuestion;
 }) {
   const { isMuted, handleToggleMute } = useMuteToggle();
-  const reversedQuestions = [...questions].reverse();
+
   return (
     <ul className={styles.container}>
-      {reversedQuestions.map((question) => (
-        <Step
-          isActive={question.id === currentQuestion.id}
-          key={question.id}
-          reward={convertToFormattedNumber(question.reward)}
-        />
-      ))}
+      {questions
+        .map((question) => (
+          <Step
+            key={question.id}
+            isActive={question.id === currentQuestion.id}
+            isPassed={question.order < currentQuestion.order}
+            reward={convertToFormattedNumber(question.reward)}
+          />
+        ))
+        .reverse()}
       <button onClick={handleToggleMute}>
         <MuteIcon isMute={isMuted} />
       </button>

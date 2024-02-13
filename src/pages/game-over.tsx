@@ -12,7 +12,7 @@ export default function GameOver() {
   const router = useRouter();
   const reachedQuestionValue = useRecoilValue(reachedQuestion);
 
-  const [_, pauseGameOverSound] = useSound(SOUND_ID.GAME_OVER);
+  const [, pauseGameOverSound] = useSound(SOUND_ID.GAME_OVER);
 
   const finalReward = convertToFormattedNumber(
     reachedQuestionValue?.reward ?? 0,
