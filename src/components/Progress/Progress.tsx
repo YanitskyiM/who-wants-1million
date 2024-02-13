@@ -3,6 +3,8 @@ import styles from "./Proggres.module.css";
 import React from "react";
 import { convertToFormattedNumber } from "@/utils/convertToFormattedNumber";
 import { Step } from "@/components/Step/Step";
+import MuteIcon from "@/components/SvgIcons/MuteIcon";
+import { useMuteToggle } from "@/hooks/useMuteToggle";
 
 export function Progress({
   questions,
@@ -11,6 +13,7 @@ export function Progress({
   questions: Array<IQuestion>;
   currentQuestion: IQuestion;
 }) {
+  const { isMuted, handleToggleMute } = useMuteToggle();
   const reversedQuestions = [...questions].reverse();
   return (
     <ul className={styles.container}>
@@ -21,6 +24,9 @@ export function Progress({
           reward={convertToFormattedNumber(question.reward)}
         />
       ))}
+      <button onClick={handleToggleMute}>
+        <MuteIcon isMute={isMuted} />
+      </button>
     </ul>
   );
 }

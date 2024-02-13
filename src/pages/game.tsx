@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import gameData from "../mock/game.json";
 import { IGame, IQuestion } from "@/models/game";
 import styles from "@/styles/Game.module.css";
@@ -8,13 +8,23 @@ import { Question } from "@/components/Question/Question";
 import { Progress } from "@/components/Progress/Progress";
 import { reachedQuestion } from "../../store/atoms";
 import { useSetRecoilState } from "recoil";
+import { SOUND_ID } from "@/constants/sound";
+import { useSound } from "@/hooks/useSound";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
 export default function Game() {
   const router = useRouter();
+
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
-  const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1); // Start with the first question
+
+  const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
+
+  const [playBgSound, pauseBgSound] = useSound(SOUND_ID.BG_SOUND);
+  const [playGameOverSound] = useSound(SOUND_ID.GAME_OVER);
+  const [playCorrectAnswerSound, pauseCorrectAnswerSound] = useSound(
+    SOUND_ID.CORRECT_ANSWER,
+  );
 
   const questionMap: { [id: number]: IQuestion } = gameQuestions.reduce(
     (map: { [id: number]: IQuestion }, question: IQuestion) => {
@@ -24,30 +34,30 @@ export default function Game() {
     {},
   );
 
-  // useEffect(() => {
-  //   const letsPlayAudio = document.getElementById("start");
-  //
-  //   letsPlayAudio && letsPlayAudio.play();
-  // }, []);
+  useEffect(() => {
+    playBgSound();
+
+    return () => {
+      pauseBgSound();
+    };
+  }, []);
 
   const currentQuestion = questionMap[currentQuestionOrder];
 
   const handleChangeQuestion = async (answerId: number) => {
-    // const letsPlayAudio = document.getElementById("start");
-    // const wrongAnswer = document.getElementById("wrong-answer");
-    // const correctAnswer = document.getElementById("correct-answer");
     if (!currentQuestion.correctAnswerIds.includes(answerId)) {
-      // letsPlayAudio && letsPlayAudio.pause();
-      // wrongAnswer && wrongAnswer.play();
+      pauseBgSound();
+      playGameOverSound();
       setReachedQuestion(questionMap[currentQuestionOrder - 1]);
       return await router.push(Routes.GAME_OVER);
     }
 
-    // letsPlayAudio && letsPlayAudio.pause();
-    // correctAnswer && correctAnswer.play();
-    // setTimeout(() => {
-    //   letsPlayAudio && letsPlayAudio.play();
-    // }, 3000);
+    pauseBgSound();
+    playCorrectAnswerSound();
+    setTimeout(() => {
+      pauseCorrectAnswerSound();
+      playBgSound();
+    }, 5000);
     setCurrentQuestionOrder(currentQuestionOrder + 1);
   };
 

@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { SOUND_ID } from "@/constants/sound";
 
 export default function Document() {
   return (
@@ -7,22 +8,9 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        {/*<audio*/}
-        {/*  id="lets-play"*/}
-        {/*  src="https://millionaire-school.netlify.com/sounds/lets_play.mp3"*/}
-        {/*></audio>*/}
-        {/*<audio*/}
-        {/*  id="start"*/}
-        {/*  src="https://millionaire-school.netlify.com/sounds/easy.mp3"*/}
-        {/*></audio>*/}
-        {/*<audio*/}
-        {/*  id="wrong-answer"*/}
-        {/*  src="https://millionaire-school.netlify.com/sounds/wrong_answer.mp3"*/}
-        {/*></audio>*/}
-        {/*<audio*/}
-        {/*  id="correct-answer"*/}
-        {/*  src="https://millionaire-school.netlify.com/sounds/correct_answer.mp3"*/}
-        {/*></audio>*/}
+        <audio id={SOUND_ID.BG_SOUND} src="/sound/bg_sound.mp3" />
+        <audio id={SOUND_ID.GAME_OVER} src="/sound/game_over.mp3" />
+        <audio id={SOUND_ID.CORRECT_ANSWER} src="/sound/correct_answer.mp3" />
       </body>
     </Html>
   );
