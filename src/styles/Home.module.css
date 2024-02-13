@@ -1,4 +1,4 @@
-.main {
+.main{
   width: 100vw;
   height: 100vh;
   background-color: white;
@@ -28,49 +28,7 @@
     margin-bottom: 4rem;
 }
 
-.button {
-  width: 18rem;
-  color: var(--white-100);
-  background-color: var(--orange-100);
-  padding: 20px 24px;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 12px;
-}
-
-.button {
-  width: 18rem;
-  color: var(--white-100);
-  background-color: var(--orange-100);
-  padding: 20px 24px;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 0.75rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  transition: all 250ms;
-  touch-action: manipulation;
-}
-/* CSS */
-
-.button:hover,
-.button:focus {
-  background-color: var(--orange-80);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-}
-
-.button:active {
-  background-color: var(--orange-120);
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  transform: translateY(0);
-}
-
-
 @media (max-width: 764px) {
-
   .main{
     padding: 0 1rem;
   }
@@ -80,9 +38,5 @@
   .title{
     font-size: 2rem;
     text-align: center;
-  }
-
-  .button {
-    width: 100%;
   }
 }

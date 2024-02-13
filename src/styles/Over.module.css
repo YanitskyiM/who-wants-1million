@@ -1,0 +1,35 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--black-100);
+  margin-bottom: 4rem;
+}
+
+.subtitle {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--black-40);
+}
+
+@media (max-width: 764px) {
+  .main {
+    padding: 0 1rem;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .title {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
