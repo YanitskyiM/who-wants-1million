@@ -76,6 +76,11 @@ button.base:active {
   transform: translateY(0);
 }
 
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+}
+
 @media (max-width: 764px) {
   button.base {
     width: 100%;

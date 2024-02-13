@@ -21,7 +21,9 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
   {},
 );
 
+const REVILE_CORRECT_ANSWER_DURATION = 1000;
 const CORRECT_ANSWER_SOUND_DURATION = 5000;
+const WRONG_ANSWER_SOUND_DURATION = 3000;
 
 export default function Game() {
   const router = useRouter();
@@ -30,9 +32,7 @@ export default function Game() {
 
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
 
-  const [playBgSound, pauseBgSound, fromBeginning] = useSound(
-    SOUND_ID.BG_SOUND,
-  );
+  const [playBgSound, pauseBgSound] = useSound(SOUND_ID.BG_SOUND);
   const [playGameOverSound] = useSound(SOUND_ID.GAME_OVER);
   const [playCorrectAnswerSound, pauseCorrectAnswerSound] = useSound(
     SOUND_ID.CORRECT_ANSWER,
@@ -49,22 +49,28 @@ export default function Game() {
   const currentQuestion = questionMap[currentQuestionOrder];
 
   const handleChangeQuestion = async (answerId: string) => {
-    if (!currentQuestion.correctAnswerIds.includes(answerId)) {
-      pauseBgSound();
-      playGameOverSound();
-      setReachedQuestion(questionMap[currentQuestionOrder - 1]);
-      return router.push(Routes.GAME_OVER);
+    const isAnswerCorrect = currentQuestion.correctAnswerIds.includes(answerId);
+
+    if (!isAnswerCorrect) {
+      setTimeout(() => {
+        pauseBgSound();
+        playGameOverSound();
+        setTimeout(() => {
+          setReachedQuestion(questionMap[currentQuestionOrder - 1]);
+          router.push(Routes.GAME_OVER);
+        }, WRONG_ANSWER_SOUND_DURATION);
+      }, REVILE_CORRECT_ANSWER_DURATION);
+    } else {
+      setTimeout(() => {
+        pauseBgSound();
+        playCorrectAnswerSound();
+        setTimeout(() => {
+          pauseCorrectAnswerSound();
+          playBgSound();
+          setCurrentQuestionOrder(currentQuestionOrder + 1);
+        }, CORRECT_ANSWER_SOUND_DURATION);
+      }, REVILE_CORRECT_ANSWER_DURATION);
     }
-
-    pauseBgSound();
-    playCorrectAnswerSound();
-
-    setTimeout(() => {
-      pauseCorrectAnswerSound();
-      fromBeginning();
-    }, CORRECT_ANSWER_SOUND_DURATION);
-
-    setCurrentQuestionOrder(currentQuestionOrder + 1);
   };
 
   if (!currentQuestion) {
