@@ -9,8 +9,8 @@ const MuteIcon: FC<IMuteIconProps> = ({ isMute }) => {
     <svg
       className="mute-icon"
       fill="var(--orange-100)"
-      height="16px"
-      width="16px"
+      height="20px"
+      width="20px"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

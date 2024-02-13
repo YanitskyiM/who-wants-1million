@@ -13,5 +13,12 @@ export function useSound(id: SOUND_ID) {
     throw new Error(`Sound with id ${id} not found`);
   }
 
-  return [async () => await sound.play(), () => sound.pause()];
+  async function fromBeginning() {
+    if (sound) {
+      sound.currentTime = 0;
+      await sound.play();
+    }
+  }
+
+  return [async () => await sound.play(), () => sound.pause(), fromBeginning];
 }

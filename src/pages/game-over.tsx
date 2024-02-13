@@ -5,14 +5,23 @@ import { Routes } from "@/constants/router";
 import { convertToFormattedNumber } from "@/utils/convertToFormattedNumber";
 import { useRecoilValue } from "recoil";
 import { reachedQuestion } from "../../store/atoms";
+import { useSound } from "@/hooks/useSound";
+import { SOUND_ID } from "@/constants/sound";
 
 export default function GameOver() {
   const router = useRouter();
   const reachedQuestionValue = useRecoilValue(reachedQuestion);
 
+  const [_, pauseGameOverSound] = useSound(SOUND_ID.GAME_OVER);
+
   const finalReward = convertToFormattedNumber(
     reachedQuestionValue?.reward ?? 0,
   );
+
+  function tryAgain() {
+    pauseGameOverSound();
+    return router.push(Routes.HOME);
+  }
 
   return (
     <main className={styles.main}>
@@ -25,11 +34,7 @@ export default function GameOver() {
       <div>
         <h3 className={styles.subtitle}>Total score:</h3>
         <h2 className={styles.title}>${finalReward} earned</h2>
-        <button
-          className="base"
-          role="link"
-          onClick={() => router.push(Routes.GAME)}
-        >
+        <button className="base" role="link" onClick={tryAgain}>
           Try again
         </button>
       </div>

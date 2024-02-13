@@ -13,6 +13,16 @@ import { useSound } from "@/hooks/useSound";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
+const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
+  (map: { [id: number]: IQuestion }, question: IQuestion) => {
+    map[question.questionOrder] = question;
+    return map;
+  },
+  {},
+);
+
+const CORRECT_ANSWER_SOUND_DURATION = 5000;
+
 export default function Game() {
   const router = useRouter();
 
@@ -20,18 +30,12 @@ export default function Game() {
 
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
 
-  const [playBgSound, pauseBgSound] = useSound(SOUND_ID.BG_SOUND);
+  const [playBgSound, pauseBgSound, fromBeginning] = useSound(
+    SOUND_ID.BG_SOUND,
+  );
   const [playGameOverSound] = useSound(SOUND_ID.GAME_OVER);
   const [playCorrectAnswerSound, pauseCorrectAnswerSound] = useSound(
     SOUND_ID.CORRECT_ANSWER,
-  );
-
-  const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
-    (map: { [id: number]: IQuestion }, question: IQuestion) => {
-      map[question.questionOrder] = question;
-      return map;
-    },
-    {},
   );
 
   useEffect(() => {
@@ -49,15 +53,17 @@ export default function Game() {
       pauseBgSound();
       playGameOverSound();
       setReachedQuestion(questionMap[currentQuestionOrder - 1]);
-      return await router.push(Routes.GAME_OVER);
+      return router.push(Routes.GAME_OVER);
     }
 
     pauseBgSound();
     playCorrectAnswerSound();
+
     setTimeout(() => {
       pauseCorrectAnswerSound();
-      playBgSound();
-    }, 5000);
+      fromBeginning();
+    }, CORRECT_ANSWER_SOUND_DURATION);
+
     setCurrentQuestionOrder(currentQuestionOrder + 1);
   };
 

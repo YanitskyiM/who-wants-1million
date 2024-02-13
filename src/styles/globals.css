@@ -64,6 +64,10 @@ button.base:hover {
   bottom: 20px;
   cursor: pointer;
   right: 20px;
+  transition: transform 250ms;
+}
+.mute-icon:hover {
+  transform: scale(1.1);
 }
 
 button.base:active {
