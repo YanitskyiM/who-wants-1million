@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import { Routes } from "@/constants/router";
-import Image from "next/image";
+import { HandResponsiveImage } from "@/components/HandResponsiveImage/HandResponsiveImage";
 
 export default function Home() {
   const router = useRouter();
@@ -25,15 +25,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.container}>
-          <Image
-            src="/images/Hand.png"
-            width={624}
-            height={367}
-            alt="Picture of the author"
-          />
-          <div>
-            <h2 className={styles.title}>Who wants to be a millionaire?</h2>
+        <div className={styles.main__container}>
+          <HandResponsiveImage />
+          <div className={styles.main__container__content}>
+            <h2 className={styles.main__container__content__title}>
+              Who wants to be a millionaire?
+            </h2>
             <button className="base" role="button" onClick={playGame}>
               Start
             </button>

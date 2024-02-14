@@ -1,4 +1,4 @@
-.main {
+.gameOver__main {
   width: 100vw;
   height: 100vh;
   background-color: white;
@@ -7,14 +7,14 @@
   align-items: center;
 }
 
-.title {
+.gameOver__content__title {
   font-size: 3.5rem;
   font-weight: 600;
   color: var(--black-100);
   margin-bottom: 4rem;
 }
 
-.subtitle {
+.gameOver__content__subtitle {
   font-size: 2rem;
   margin-bottom: 0.25rem;
   font-weight: 600;
@@ -22,14 +22,27 @@
 }
 
 @media (max-width: 764px) {
-  .main {
-    padding: 0 1rem;
-  }
-  .container {
+  .gameOver__main {
+    padding: 5rem 1rem 3rem 1rem;
     flex-direction: column;
   }
-  .title {
+
+  .gameOver__content{
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .gameOver__content__title {
     font-size: 2rem;
+    text-align: center;
+  }
+
+  .gameOver__content__subtitle{
+    font-size: 1rem;
     text-align: center;
   }
 }

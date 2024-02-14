@@ -84,5 +84,6 @@ button[disabled] {
 @media (max-width: 764px) {
   button.base {
     width: 100%;
+    font-size: .875rem;
   }
 }

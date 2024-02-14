@@ -15,13 +15,13 @@
   position: absolute;
 }
 
-.container {
+.main__container {
   z-index: 1;
   display: flex;
   align-items: center;
 }
 
-.title{
+.main__container__content__title{
     font-size: 3.5rem;
     font-weight: 600;
     color: var(--black-100);
@@ -30,13 +30,25 @@
 
 @media (max-width: 764px) {
   .main{
-    padding: 0 1rem;
+    padding: 5rem 1rem 3rem 1rem;
   }
-  .container{
+
+  .main__container{
     flex-direction: column;
+    height: 100%;
   }
-  .title{
+
+  .main__container__content{
+    margin-top: 1.5rem;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .main__container__content__title{
     font-size: 2rem;
     text-align: center;
   }
 }
+
