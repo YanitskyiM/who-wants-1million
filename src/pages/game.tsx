@@ -10,6 +10,11 @@ import { is1MillionReached, reachedQuestion } from "../../store/atoms";
 import { useSetRecoilState } from "recoil";
 import { SOUND_ID } from "@/constants/sound";
 import { useSound } from "@/hooks/useSound";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { useMedia } from "react-use";
+import { BurgerMenuIcon } from "@/components/SvgIcons/BurgerMenuIcon";
+import { CloseIcon } from "@/components/SvgIcons/CloseIcon";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
@@ -27,6 +32,7 @@ const CORRECT_ANSWER_SOUND_DURATION = 5000;
 
 export default function Game() {
   const router = useRouter();
+  const isWide = useMedia("(min-width: 768px)");
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
@@ -39,6 +45,11 @@ export default function Game() {
     SOUND_ID.CORRECT_ANSWER,
   );
 
+  const [isOpen, setIsOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
   useEffect(() => {
     playBgSound();
 
@@ -46,6 +57,10 @@ export default function Game() {
       pauseBgSound();
     };
   }, []);
+
+  useEffect(() => {
+    setIsOpen(isWide);
+  }, [isWide]);
 
   const currentQuestion = questionMap[currentQuestionOrder];
   const totalQuestions = gameQuestions.length;
@@ -90,12 +105,23 @@ export default function Game() {
 
   return (
     <div className={styles.container}>
+      <button className={styles.burger__button_box} onClick={toggleDrawer}>
+        {isOpen ? <CloseIcon /> : <BurgerMenuIcon />}
+      </button>
       <Question
         key={currentQuestionOrder}
         question={currentQuestion}
         onAnswerClick={handleChangeQuestion}
       />
-      <Progress currentQuestion={currentQuestion} questions={gameQuestions} />
+      <Drawer
+        size={isWide ? "25%" : "100%"}
+        enableOverlay={false}
+        open={isOpen}
+        onClose={toggleDrawer}
+        direction="right"
+      >
+        <Progress currentQuestion={currentQuestion} questions={gameQuestions} />
+      </Drawer>
     </div>
   );
 }

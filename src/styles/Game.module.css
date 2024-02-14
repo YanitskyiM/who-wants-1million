@@ -5,3 +5,17 @@
   height: 100vh;
   width: 100%;
 }
+
+.burger__button_box{
+  display: none;
+}
+
+@media (max-width: 764px) {
+  .burger__button_box{
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+}
