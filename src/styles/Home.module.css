@@ -1,6 +1,6 @@
 .main{
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
 
 .main:after {
   content: " ";
-  border-bottom: 100vh solid #fff3eb;
+  border-bottom: 100dvh solid #fff3eb;
   border-left: 100vw solid transparent;
   width: 0;
   position: absolute;
