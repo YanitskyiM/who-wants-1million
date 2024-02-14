@@ -55,7 +55,7 @@
 @media (max-width: 764px) {
   .question__container {
     width: 100%;
-    padding: 8rem 0 0 0;
+    padding: 8rem 0 1rem 0;
   }
 
   .question__title {
