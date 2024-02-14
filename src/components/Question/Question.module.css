@@ -1,6 +1,6 @@
 .question__container {
   width: 75%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   padding: 5rem;
   flex-direction: column;
@@ -55,7 +55,7 @@
 @media (max-width: 764px) {
   .question__container {
     width: 100%;
-    padding: 6rem 0 2rem 0;
+    padding: 8rem 0 1rem 0;
   }
 
   .question__title {
@@ -72,7 +72,6 @@
 
   .svg__button {
     width: 100%;
-    height: 4rem;
   }
 
   .svg__button__text {
