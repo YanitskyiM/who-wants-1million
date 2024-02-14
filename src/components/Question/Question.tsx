@@ -2,8 +2,11 @@ import { IQuestion } from "@/models/game";
 import styles from "./Question.module.css";
 import React, { useState } from "react";
 import { AnswerSvgButton } from "@/components/Question/AnswerSvgButton";
+import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from "@/constants/time";
+import { wait } from "@/utils/wait";
 
-const REVEAL_CORRECT_ANSWER_DURATION = 1500;
+// todo: refactor styles
+// todo: call game settings from api
 
 export function Question({
   question: { answers, question, correctAnswerIds },
@@ -16,16 +19,16 @@ export function Question({
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
 
-  const onAnswer = (id: string) => {
+  const onAnswer = async (id: string) => {
     setSelectedAnswer(id);
     onAnswerClick(id);
-    setTimeout(() => {
-      if (correctAnswerIds.includes(id)) {
-        setIsCorrect(true);
-      } else {
-        setIsWrong(true);
-      }
-    }, REVEAL_CORRECT_ANSWER_DURATION);
+    await wait(REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION);
+
+    if (correctAnswerIds.includes(id)) {
+      setIsCorrect(true);
+    } else {
+      setIsWrong(true);
+    }
   };
 
   return (

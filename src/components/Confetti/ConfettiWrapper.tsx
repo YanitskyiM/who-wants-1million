@@ -1,8 +1,12 @@
 import React from "react";
 import Confetti from "react-confetti";
 import { useRecoilValue } from "recoil";
-import { is1MillionReached } from "../../../store/atoms";
 import { useWindowSize } from "react-use";
+import { is1MillionReached } from "@/store/atoms";
+
+// todo: sound componemt, sound atom
+// todo: create hsaMap and change src
+// todo: based on recoil state play pause
 
 export function ConfettiWrapper({ children }: { children: React.ReactNode }) {
   const is1MillionReachedValue = useRecoilValue(is1MillionReached);

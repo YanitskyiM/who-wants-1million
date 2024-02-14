@@ -3,7 +3,7 @@ import styles from "../styles/GameOver.module.css";
 import { Routes } from "@/constants/router";
 import { convertToFormattedNumber } from "@/utils/convertToFormattedNumber";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { is1MillionReached, reachedQuestion } from "../../store/atoms";
+import { is1MillionReached, reachedQuestion } from "@/store/atoms";
 import { useSound } from "@/hooks/useSound";
 import { SOUND_ID } from "@/constants/sound";
 import { HandResponsiveImage } from "@/components/HandResponsiveImage/HandResponsiveImage";

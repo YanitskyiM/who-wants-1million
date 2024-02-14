@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { Routes } from "@/constants/router";
 import { Question } from "@/components/Question/Question";
 import { Progress } from "@/components/Progress/Progress";
-import { is1MillionReached, reachedQuestion } from "../../store/atoms";
+import { is1MillionReached, reachedQuestion } from "@/store/atoms";
 import { useSetRecoilState } from "recoil";
 import { SOUND_ID } from "@/constants/sound";
 import { useSound } from "@/hooks/useSound";
@@ -15,6 +15,12 @@ import "react-modern-drawer/dist/index.css";
 import { useMount } from "react-use";
 import { BurgerMenuIcon } from "@/components/SvgIcons/BurgerMenuIcon";
 import { CloseIcon } from "@/components/SvgIcons/CloseIcon";
+import {
+  CORRECT_ANSWER_SOUND_DURATION,
+  REVEAL_CORRECT_ANSWER_DURATION,
+  WRONG_ANSWER_SOUND_DURATION,
+} from "@/constants/time";
+import { wait } from "@/utils/wait";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
@@ -25,10 +31,6 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
   },
   {},
 );
-
-const REVEAL_CORRECT_ANSWER_DURATION = 1000;
-const WRONG_ANSWER_SOUND_DURATION = 3000;
-const CORRECT_ANSWER_SOUND_DURATION = 4000;
 
 export default function Game() {
   const router = useRouter();
@@ -54,6 +56,7 @@ export default function Game() {
     playBgSound();
   });
 
+  // todo: create hook
   const handleResize = () => {
     const isMobile = window.innerWidth < 768;
     setIsMobile(isMobile);
@@ -77,32 +80,34 @@ export default function Game() {
     const isAnswerCorrect = currentQuestion.correctAnswerIds.includes(answerId);
 
     if (!isAnswerCorrect) {
-      setTimeout(() => {
-        pauseBgSound();
-        playGameOverSound();
-        setTimeout(() => {
-          setReachedQuestion(questionMap[currentQuestionOrder - 1]);
-          router.push(Routes.GAME_OVER);
-        }, WRONG_ANSWER_SOUND_DURATION);
-      }, REVEAL_CORRECT_ANSWER_DURATION);
+      await wait(REVEAL_CORRECT_ANSWER_DURATION);
+      pauseBgSound();
+      playGameOverSound();
+
+      await wait(WRONG_ANSWER_SOUND_DURATION);
+      setReachedQuestion(questionMap[currentQuestionOrder - 1]);
+
+      await router.push(Routes.GAME_OVER);
     } else {
-      setTimeout(() => {
-        pauseBgSound();
-        playCorrectAnswerSound();
-        if (isLastQuestion) {
-          setIs1MillionReachedValue(true);
-        }
-        setTimeout(() => {
-          pauseCorrectAnswerSound();
-          playBgSound();
-          if (isLastQuestion) {
-            setReachedQuestion(questionMap[currentQuestionOrder]);
-            router.push(Routes.GAME_OVER);
-            return;
-          }
-          setCurrentQuestionOrder(currentQuestionOrder + 1);
-        }, CORRECT_ANSWER_SOUND_DURATION);
-      }, REVEAL_CORRECT_ANSWER_DURATION);
+      await wait(REVEAL_CORRECT_ANSWER_DURATION);
+      pauseBgSound();
+      playCorrectAnswerSound();
+
+      if (isLastQuestion) {
+        setIs1MillionReachedValue(true);
+      }
+
+      await wait(CORRECT_ANSWER_SOUND_DURATION);
+      pauseCorrectAnswerSound();
+      playBgSound();
+
+      if (isLastQuestion) {
+        setReachedQuestion(questionMap[currentQuestionOrder]);
+        await router.push(Routes.GAME_OVER);
+        return;
+      }
+
+      setCurrentQuestionOrder(currentQuestionOrder + 1);
     }
   };
 
