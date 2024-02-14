@@ -16,18 +16,18 @@ export function AnswerSvgButton(props: IAnswerSvgButtonProps) {
     props;
 
   const getPathClass = useMemo(() => {
-    if (isCorrect) return styles.svg_button_correct;
-    if (isWrong) return styles.svg_button_wrong;
-    if (isSelected) return styles.svg_button_selected;
-    return styles.svg_button_bg;
+    if (isCorrect) return styles.svg__button_correct;
+    if (isWrong) return styles.svg__button_wrong;
+    if (isSelected) return styles.svg__button_selected;
+    return styles.svg__button_bg;
   }, [isCorrect, isWrong, isSelected]);
 
   return (
     <button disabled={isDisabled} onClick={onClick}>
       <svg
-        width="389"
-        height="72"
-        className={styles.svg_button}
+        // width="389"
+        // height="72"
+        className={styles.svg__button}
         viewBox="0 0 405 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -41,14 +41,13 @@ export function AnswerSvgButton(props: IAnswerSvgButtonProps) {
         <text
           x="56"
           y="44"
-          fontFamily="Inter"
-          fontSize="20"
+          className={styles.svg__button__text}
           fontWeight={900}
           fill="#FF8B37"
         >
           {order}
         </text>
-        <text x="84" y="44" fontFamily="Inter" fontSize="20" fill="black">
+        <text x="84" y="44" className={styles.svg__button__text} fill="black">
           {title}
         </text>
       </svg>

@@ -44,7 +44,7 @@ export function Step({
           fontFamily="Inter"
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize="20"
+          fontSize="1.25rem"
           fontWeight={400}
           fill={textStrokeColor}
         >

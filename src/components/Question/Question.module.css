@@ -1,4 +1,4 @@
-.container {
+.question__container {
   width: 75%;
   height: 100vh;
   display: flex;
@@ -7,47 +7,75 @@
   justify-content: space-between;
 }
 
-.question_title {
+.question__title {
   font-size: 2rem;
   font-weight: 600;
 }
 
-.answer_block {
+.question__answer__block {
   display: grid;
   width: fit-content;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.question_title {
-  margin-bottom: 20px; /* Adjust the margin as needed */
-}
-
-.svg_button {
-  width: 300px;
+.svg__button {
+  width: 25rem;
   transition: all 0.3s ease;
 }
 
-.svg_button_bg {
+.svg__button_bg {
   fill: #fff;
   stroke: #d0d0d8;
 }
 
-.svg_button:hover .svg_button_bg {
+.svg__button:hover .svg__button_bg {
   fill: #fff;
   stroke: var(--orange-100);
 }
 
-.svg_button_selected {
+.svg__button_selected {
   fill: var(--orange-5);
   stroke: var(--orange-100);
 }
 
-.svg_button_wrong {
+.svg__button_wrong {
   fill: var(--red-5);
   stroke: var(--red-100);
 }
 
-.svg_button_correct {
+.svg__button_correct {
   fill: var(--green-5);
   stroke: var(--green-100);
+}
+
+.svg__button__text {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 764px) {
+  .question__container {
+    width: 100%;
+    padding: 8rem 0 0 0;
+  }
+
+  .question__title {
+    text-align: center;
+    padding: 0 1rem;
+    font-size: 1.115rem;
+  }
+
+  .question__answer__block {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .svg__button {
+    width: 100%;
+    height: 4rem;
+  }
+
+  .svg__button__text {
+    font-size: 0.875rem;
+  }
 }

@@ -16,7 +16,7 @@ export function Progress({
   const { isMuted, handleToggleMute } = useMuteToggle();
 
   return (
-    <ul className={styles.container}>
+    <ul className={styles.progress__container}>
       {questions
         .map((question) => (
           <Step

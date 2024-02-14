@@ -29,9 +29,9 @@ export function Question({
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.question_title}>{question}</h2>
-      <div className={styles.answer_block}>
+    <div className={styles.question__container}>
+      <h2 className={styles.question__title}>{question}</h2>
+      <div className={styles.question__answer__block}>
         {answers.map((answer) => (
           <AnswerSvgButton
             key={answer.id}
