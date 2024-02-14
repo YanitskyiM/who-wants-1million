@@ -5,9 +5,6 @@ import { AnswerSvgButton } from "@/components/Question/AnswerSvgButton";
 import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from "@/constants/time";
 import { wait } from "@/utils/wait";
 
-// todo: refactor styles
-// todo: call game settings from api
-
 export function Question({
   question: { answers, question, correctAnswerIds },
   onAnswerClick,
