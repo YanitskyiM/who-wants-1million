@@ -12,7 +12,7 @@ import { SOUND_ID } from "@/constants/sound";
 import { useSound } from "@/hooks/useSound";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import { useMedia } from "react-use";
+import { useMount } from "react-use";
 import { BurgerMenuIcon } from "@/components/SvgIcons/BurgerMenuIcon";
 import { CloseIcon } from "@/components/SvgIcons/CloseIcon";
 
@@ -28,11 +28,11 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
 
 const REVEAL_CORRECT_ANSWER_DURATION = 1000;
 const WRONG_ANSWER_SOUND_DURATION = 3000;
-const CORRECT_ANSWER_SOUND_DURATION = 5000;
+const CORRECT_ANSWER_SOUND_DURATION = 4000;
 
 export default function Game() {
   const router = useRouter();
-  const isWide = useMedia("(min-width: 768px)");
+  const [isMobile, setIsMobile] = useState(false);
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
@@ -50,17 +50,24 @@ export default function Game() {
     setIsOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
+  useMount(() => {
     playBgSound();
+  });
 
+  const handleResize = () => {
+    const isMobile = window.innerWidth < 768;
+    setIsMobile(isMobile);
+    setIsOpen(!isMobile);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function
     return () => {
-      pauseBgSound();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    setIsOpen(isWide);
-  }, [isWide]);
 
   const currentQuestion = questionMap[currentQuestionOrder];
   const totalQuestions = gameQuestions.length;
@@ -114,7 +121,7 @@ export default function Game() {
         onAnswerClick={handleChangeQuestion}
       />
       <Drawer
-        size={isWide ? "25%" : "100%"}
+        size={isMobile ? "100%" : "25%"}
         enableOverlay={false}
         open={isOpen}
         onClose={toggleDrawer}
