@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import gameData from "../mock/game.json";
 import { IGame, IQuestion } from "@/models/game";
 import styles from "@/styles/Game.module.css";
@@ -21,6 +21,7 @@ import {
   WRONG_ANSWER_SOUND_DURATION,
 } from "@/constants/time";
 import { wait } from "@/utils/wait";
+import useResponsiveDrawer from "@/hooks/useResponsiveDrawer";
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
@@ -34,7 +35,6 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
 
 export default function Game() {
   const router = useRouter();
-  const [isMobile, setIsMobile] = useState(false);
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
@@ -47,30 +47,11 @@ export default function Game() {
     SOUND_ID.CORRECT_ANSWER,
   );
 
-  const [isOpen, setIsOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const { isMobile, isOpen, toggleDrawer } = useResponsiveDrawer();
 
   useMount(() => {
     playBgSound();
   });
-
-  // todo: create hook
-  const handleResize = () => {
-    const isMobile = window.innerWidth < 768;
-    setIsMobile(isMobile);
-    setIsOpen(!isMobile);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const currentQuestion = questionMap[currentQuestionOrder];
   const totalQuestions = gameQuestions.length;
