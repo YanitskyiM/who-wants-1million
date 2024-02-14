@@ -98,7 +98,11 @@ export default function Game() {
 
   return (
     <div className={styles.container}>
-      <button className={styles.burger__button_box} onClick={toggleDrawer}>
+      <button
+        type="button"
+        className={styles.burger__button_box}
+        onClick={toggleDrawer}
+      >
         {isOpen ? <CloseIcon /> : <BurgerMenuIcon />}
       </button>
       <Question

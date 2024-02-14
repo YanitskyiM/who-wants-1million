@@ -32,9 +32,10 @@ export function Question({
     <div className={styles.question__container}>
       <h2 className={styles.question__title}>{question}</h2>
       <div className={styles.question__answer__block}>
-        {answers.map((answer) => (
+        {answers.map((answer, idx) => (
           <AnswerSvgButton
             key={answer.id}
+            idx={idx}
             order={answer.id}
             title={answer.text}
             onClick={() => onAnswer(answer.id)}

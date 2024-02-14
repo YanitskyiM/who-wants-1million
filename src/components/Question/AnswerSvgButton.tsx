@@ -5,14 +5,23 @@ interface IAnswerSvgButtonProps {
   order: string;
   onClick: () => void;
   isSelected: boolean;
+  idx: number;
   isCorrect: boolean;
   isWrong: boolean;
   isDisabled: boolean;
 }
 
 export function AnswerSvgButton(props: IAnswerSvgButtonProps) {
-  const { title, order, onClick, isSelected, isCorrect, isWrong, isDisabled } =
-    props;
+  const {
+    title,
+    order,
+    idx,
+    onClick,
+    isSelected,
+    isCorrect,
+    isWrong,
+    isDisabled,
+  } = props;
 
   const getPathClass = () => {
     if (isCorrect) return styles.svg__button_correct;
@@ -22,7 +31,12 @@ export function AnswerSvgButton(props: IAnswerSvgButtonProps) {
   };
 
   return (
-    <button disabled={isDisabled} onClick={onClick}>
+    <button
+      tabIndex={idx + 1}
+      type="button"
+      disabled={isDisabled}
+      onClick={onClick}
+    >
       <svg
         className={styles.svg__button}
         viewBox="0 0 405 72"
