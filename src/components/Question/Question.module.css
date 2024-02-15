@@ -78,3 +78,11 @@
     font-size: 0.875rem;
   }
 }
+
+
+@media (hover: none) {
+  .svg__button:hover .svg__button_bg {
+    fill: #fff;
+    stroke: #d0d0d8;
+  }
+}
