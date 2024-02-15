@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { is1MillionReached, reachedQuestion } from '@/store/atoms';
+import { is1MillionReached, isGameOverTime, reachedQuestion } from '@/store/atoms';
 import useSound from '@/hooks/useSound';
 import SoundId from '@/constants/sound';
 import Routes from '@/constants/router';
@@ -14,6 +14,7 @@ export default function GameOver() {
   const router = useRouter();
   const reachedQuestionValue = useRecoilValue(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
+  const setIsGameOverTime = useSetRecoilState(isGameOverTime);
 
   useRedirectOnReload();
 
@@ -26,6 +27,7 @@ export default function GameOver() {
   function tryAgain() {
     pauseGameOverSound();
     setIs1MillionReachedValue(false);
+    setIsGameOverTime(false);
     return router.push(Routes.HOME);
   }
 

@@ -52,6 +52,18 @@
   font-size: 1.25rem;
 }
 
+@media (max-width: 1200px) {
+  .svg__button {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 950px) {
+  .svg__button {
+    width: 15rem;
+  }
+}
+
 @media (max-width: 764px) {
   .question__container {
     width: 100%;

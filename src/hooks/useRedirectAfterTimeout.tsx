@@ -26,7 +26,7 @@ const useExecuteAfterTimeout = (callback: ()=> void, timeForAnswerInSeconds:numb
         clearInterval(interval);
       }
     };
-  }, [isActive, timeLeft]);
+  }, [isActive, timeLeft, callback, timeForAnswerInSeconds]);
 
   const startTimer = () => {
     setIsActive(true);
