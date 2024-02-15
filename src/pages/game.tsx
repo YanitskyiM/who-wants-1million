@@ -4,7 +4,7 @@ import styles from '@/styles/Game.module.css';
 import { useRouter } from 'next/router';
 import Question from '@/components/Question/Question';
 import Progress from '@/components/Progress/Progress';
-import { is1MillionReached, reachedQuestion } from '@/store/atoms';
+import { is1MillionReached, isGameOverTime, reachedQuestion } from '@/store/atoms';
 import { useSetRecoilState } from 'recoil';
 import useSound from '@/hooks/useSound';
 import Drawer from 'react-modern-drawer';
@@ -15,6 +15,7 @@ import { CloseIcon } from '@/components/SvgIcons/CloseIcon';
 import {
   CORRECT_ANSWER_SOUND_DURATION,
   REVEAL_CORRECT_ANSWER_DURATION,
+  TIME_OVER_DURATION_IN_SECONDS,
   WRONG_ANSWER_SOUND_DURATION,
 } from '@/constants/time';
 import wait from '@/utils/wait';
@@ -22,6 +23,7 @@ import useResponsiveDrawer from '@/hooks/useResponsiveDrawer';
 import SoundId from '@/constants/sound';
 import Routes from '@/constants/router';
 import useRedirectOnReload from '@/hooks/useRedirectOnReload';
+import useRedirectAfterTimeout from '@/hooks/useRedirectAfterTimeout';
 import gameData from '../mock/game.json';
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
@@ -40,6 +42,7 @@ export default function Game() {
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
+  const setIsGameOverTime = useSetRecoilState(isGameOverTime);
 
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
 
@@ -51,26 +54,41 @@ export default function Game() {
 
   const { isMobile, isOpen, toggleDrawer } = useResponsiveDrawer();
 
-  useMount(() => {
-    playBgSound();
-  });
-
   const currentQuestion = questionMap[currentQuestionOrder];
   const totalQuestions = gameQuestions.length;
   const isLastQuestion = currentQuestionOrder === totalQuestions;
 
+  async function gameOver(isTimeOver = true) {
+    await wait(REVEAL_CORRECT_ANSWER_DURATION);
+    if (isTimeOver) {
+      setIsGameOverTime(true);
+    }
+    pauseBgSound();
+    playGameOverSound();
+
+    await wait(WRONG_ANSWER_SOUND_DURATION);
+    setReachedQuestion(questionMap[currentQuestionOrder - 1]);
+
+    await router.push(Routes.GAME_OVER);
+  }
+
+  const { startTimer, resetTimer, pauseTimer } = useRedirectAfterTimeout(
+    gameOver,
+    TIME_OVER_DURATION_IN_SECONDS,
+  );
+
+  useMount(() => {
+    playBgSound();
+    startTimer();
+  });
+
   const handleChangeQuestion = async (answerId: string) => {
+    pauseTimer();
+
     const isAnswerCorrect = currentQuestion.correctAnswerIds.includes(answerId);
 
     if (!isAnswerCorrect) {
-      await wait(REVEAL_CORRECT_ANSWER_DURATION);
-      pauseBgSound();
-      playGameOverSound();
-
-      await wait(WRONG_ANSWER_SOUND_DURATION);
-      setReachedQuestion(questionMap[currentQuestionOrder - 1]);
-
-      await router.push(Routes.GAME_OVER);
+      await gameOver(false);
     } else {
       await wait(REVEAL_CORRECT_ANSWER_DURATION);
       pauseBgSound();
@@ -90,7 +108,7 @@ export default function Game() {
         await router.push(Routes.GAME_OVER);
         return;
       }
-
+      resetTimer();
       setCurrentQuestionOrder(currentQuestionOrder + 1);
     }
   };

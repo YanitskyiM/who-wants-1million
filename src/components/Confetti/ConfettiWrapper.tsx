@@ -14,7 +14,7 @@ function ConfettiWrapper({ children }: { children: React.ReactNode }) {
     <>
       {is1MillionReachedValue && <Confetti width={width} height={height} />}
       {children}
-      <audio id={SoundId.BG_SOUND} loop muted={isMutedValue} src="/sound/bg_sound.mp3">
+      <audio id={SoundId.BG_SOUND} muted={isMutedValue} src="/sound/bg_sound.mp3">
         <track kind="captions" />
       </audio>
       <audio id={SoundId.GAME_OVER} muted={isMutedValue} src="/sound/game_over.mp3">

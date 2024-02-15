@@ -7,12 +7,15 @@ import SoundId from '@/constants/sound';
 import Routes from '@/constants/router';
 import HandResponsiveImage from '@/components/HandResponsiveImage/HandResponsiveImage';
 import convertToFormattedNumber from '@/utils/convertToFormattedNumber';
+import useRedirectOnReload from '@/hooks/useRedirectOnReload';
 import styles from '../styles/GameOver.module.css';
 
 export default function GameOver() {
   const router = useRouter();
   const reachedQuestionValue = useRecoilValue(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
+
+  useRedirectOnReload();
 
   const [, pauseGameOverSound] = useSound(SoundId.GAME_OVER);
 

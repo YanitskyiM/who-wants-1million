@@ -11,6 +11,11 @@ export const is1MillionReached = atom<boolean>({
   default: false,
 });
 
+export const isGameOverTime = atom<boolean>({
+  key: 'isGameOverTime',
+  default: false,
+});
+
 export const isMuted = atom<boolean>({
   key: 'isMuted',
   default: false,
