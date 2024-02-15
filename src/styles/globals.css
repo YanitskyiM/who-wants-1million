@@ -90,6 +90,10 @@ button[disabled] {
     width: 100%;
     font-size: 0.875rem;
   }
+  .mute-icon {
+    top: 1.25rem;
+    left: 1.25rem;
+  }
 }
 
 @media (min-width: 1964px) {

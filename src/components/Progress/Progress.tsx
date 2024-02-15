@@ -1,19 +1,20 @@
-import { IQuestion } from "@/models/game";
-import styles from "./Proggres.module.css";
-import React from "react";
-import { convertToFormattedNumber } from "@/utils/convertToFormattedNumber";
-import { Step } from "@/components/Step/Step";
-import MuteIcon from "@/components/SvgIcons/MuteIcon";
-import { useMuteToggle } from "@/hooks/useMuteToggle";
+import { IQuestion } from '@/models/game';
+import React from 'react';
+import MuteIcon from '@/components/SvgIcons/MuteIcon';
+import Step from '@/components/Step/Step';
+import convertToFormattedNumber from '@/utils/convertToFormattedNumber';
+import { useRecoilState } from 'recoil';
+import { toggleMuteSelector } from '@/store/atoms';
+import styles from './Proggres.module.css';
 
-export function Progress({
+function Progress({
   questions,
   currentQuestion,
 }: {
   questions: Array<IQuestion>;
   currentQuestion: IQuestion;
 }) {
-  const { isMuted, handleToggleMute } = useMuteToggle();
+  const [isMutedValue, toggleMute] = useRecoilState(toggleMuteSelector);
 
   return (
     <ul className={styles.progress__container}>
@@ -27,9 +28,11 @@ export function Progress({
           />
         ))
         .reverse()}
-      <button onClick={handleToggleMute}>
-        <MuteIcon isMute={isMuted} />
+      <button aria-label="toggle sound" type="button" onClick={() => toggleMute(isMutedValue)}>
+        <MuteIcon isMute={isMutedValue} />
       </button>
     </ul>
   );
 }
+
+export default Progress;

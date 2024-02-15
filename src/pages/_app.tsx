@@ -1,7 +1,9 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
-import { ConfettiWrapper } from "@/components/Confetti/ConfettiWrapper";
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
+import ConfettiWrapper from '@/components/Confetti/ConfettiWrapper';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

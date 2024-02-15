@@ -1,7 +1,7 @@
-import { SOUND_ID } from "@/constants/sound";
+import SoundId from '@/constants/sound';
 
-export function useSound(id: SOUND_ID) {
-  const isBrowser = typeof window !== "undefined";
+function useSound(id: SoundId) {
+  const isBrowser = typeof window !== 'undefined';
 
   if (!isBrowser) {
     return [() => {}, () => {}];
@@ -22,3 +22,5 @@ export function useSound(id: SOUND_ID) {
 
   return [play, () => sound.pause()];
 }
+
+export default useSound;

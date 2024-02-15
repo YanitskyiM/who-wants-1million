@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 const useResponsiveDrawer = (breakpoint = 768) => {
-  const [isMobile, setIsMobile] = useState(false); // Assume desktop first, or use a different initial state as needed
-  const [isOpen, setIsOpen] = useState(false); // Default state, adjust as needed
+  const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,9 +13,9 @@ const useResponsiveDrawer = (breakpoint = 768) => {
 
     handleResize();
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [breakpoint]);
 
   const toggleDrawer = useCallback(() => {

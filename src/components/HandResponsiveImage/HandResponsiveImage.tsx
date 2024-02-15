@@ -1,6 +1,7 @@
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
-export function HandResponsiveImage() {
+function HandResponsiveImage() {
   return (
     <div>
       <Image
@@ -13,3 +14,5 @@ export function HandResponsiveImage() {
     </div>
   );
 }
+
+export default HandResponsiveImage;

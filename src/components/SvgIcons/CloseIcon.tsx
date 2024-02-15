@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function CloseIcon() {
   return (
@@ -16,3 +16,5 @@ export function CloseIcon() {
     </svg>
   );
 }
+
+export default CloseIcon;
