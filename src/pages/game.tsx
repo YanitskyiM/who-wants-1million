@@ -26,13 +26,10 @@ import gameData from '../mock/game.json';
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
 
 const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
-  (map: { [id: number]: IQuestion }, question: IQuestion) => {
-    const newMap = {
-      ...map,
-      [question.order.toString()]: question,
-    };
-    return newMap;
-  },
+  (map: { [id: number]: IQuestion }, question: IQuestion) => ({
+    ...map,
+    [question.order.toString()]: question,
+  }),
   {},
 );
 
