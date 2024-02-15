@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Routes from '@/constants/router';
-import { IS_RELOADED } from '@/constants/storage';
+import IS_RELOADED from '@/constants/storage';
 
 const useRedirectOnReload = () => {
   const router = useRouter();
