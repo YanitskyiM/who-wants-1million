@@ -1,8 +1,9 @@
-import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import { useRouter } from "next/router";
-import { Routes } from "@/constants/router";
-import { HandResponsiveImage } from "@/components/HandResponsiveImage/HandResponsiveImage";
+import React from 'react';
+import Head from 'next/head';
+import styles from '@/styles/Home.module.css';
+import { useRouter } from 'next/router';
+import Routes from '@/constants/router';
+import HandResponsiveImage from '@/components/HandResponsiveImage/HandResponsiveImage';
 
 export default function Home() {
   const router = useRouter();
@@ -31,7 +32,11 @@ export default function Home() {
             <h2 className={styles.main__container__content__title}>
               Who wants to be a millionaire?
             </h2>
-            <button className="base" role="button" onClick={playGame}>
+            <button
+              className="base"
+              type="button"
+              onClick={playGame}
+            >
               Start
             </button>
           </div>

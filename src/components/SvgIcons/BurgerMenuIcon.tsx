@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export function BurgerMenuIcon() {
+function BurgerMenuIcon() {
   return (
     <svg
       width="24"
@@ -24,3 +24,5 @@ export function BurgerMenuIcon() {
     </svg>
   );
 }
+
+export default BurgerMenuIcon;

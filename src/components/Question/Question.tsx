@@ -1,11 +1,11 @@
-import { IQuestion } from "@/models/game";
-import styles from "./Question.module.css";
-import React, { useState } from "react";
-import { AnswerSvgButton } from "@/components/Question/AnswerSvgButton";
-import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from "@/constants/time";
-import { wait } from "@/utils/wait";
+import { IQuestion } from '@/models/game';
+import React, { useState } from 'react';
+import AnswerSvgButton from '@/components/Question/AnswerSvgButton';
+import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from '@/constants/time';
+import wait from '@/utils/wait';
+import styles from './Question.module.css';
 
-export function Question({
+function Question({
   question: { answers, question, correctAnswerIds },
   onAnswerClick,
 }: {
@@ -49,3 +49,5 @@ export function Question({
     </div>
   );
 }
+
+export default Question;
