@@ -41,7 +41,7 @@ export default function Game() {
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
 
-  const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(11);
+  const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
 
   const [playBgSound, pauseBgSound] = useSound(SoundId.BG_SOUND);
   const [playGameOverSound] = useSound(SoundId.GAME_OVER);
