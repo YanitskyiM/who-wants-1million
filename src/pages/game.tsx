@@ -21,6 +21,7 @@ import wait from '@/utils/wait';
 import useResponsiveDrawer from '@/hooks/useResponsiveDrawer';
 import SoundId from '@/constants/sound';
 import Routes from '@/constants/router';
+import useRedirectOnReload from '@/hooks/useRedirectOnReload';
 import gameData from '../mock/game.json';
 
 const gameQuestions: IQuestion[] = (gameData as IGame).questions;
@@ -35,6 +36,7 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
 
 export default function Game() {
   const router = useRouter();
+  useRedirectOnReload();
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
