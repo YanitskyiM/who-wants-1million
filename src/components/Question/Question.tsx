@@ -1,7 +1,7 @@
 import { IQuestion } from '@/models/game';
 import React, { useState } from 'react';
 import AnswerSvgButton from '@/components/Question/AnswerSvgButton';
-import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from '@/constants/time';
+import { REVEAL_CORRECT_ANSWER_HIGHLIGHT_DURATION } from '@/constants/game';
 import wait from '@/utils/wait';
 import { useRecoilValue } from 'recoil';
 import { isGameOverTime } from '@/store/atoms';

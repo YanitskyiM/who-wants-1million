@@ -4,7 +4,11 @@ import styles from '@/styles/Game.module.css';
 import { useRouter } from 'next/router';
 import Question from '@/components/Question/Question';
 import Progress from '@/components/Progress/Progress';
-import { is1MillionReached, isGameOverTime, reachedQuestion } from '@/store/atoms';
+import {
+  is1MillionReached,
+  isGameOverTime,
+  reachedQuestion,
+} from '@/store/atoms';
 import { useSetRecoilState } from 'recoil';
 import useSound from '@/hooks/useSound';
 import Drawer from 'react-modern-drawer';
@@ -14,10 +18,11 @@ import BurgerMenuIcon from '@/components/SvgIcons/BurgerMenuIcon';
 import { CloseIcon } from '@/components/SvgIcons/CloseIcon';
 import {
   CORRECT_ANSWER_SOUND_DURATION,
+  FIRST_QUESTION_ORDER,
   REVEAL_CORRECT_ANSWER_DURATION,
   TIME_OVER_DURATION_IN_SECONDS,
   WRONG_ANSWER_SOUND_DURATION,
-} from '@/constants/time';
+} from '@/constants/game';
 import wait from '@/utils/wait';
 import useResponsiveDrawer from '@/hooks/useResponsiveDrawer';
 import SoundId from '@/constants/sound';
@@ -38,13 +43,12 @@ const questionMap: { [id: string]: IQuestion } = gameQuestions.reduce(
 
 export default function Game() {
   const router = useRouter();
-  useRedirectOnReload();
+
+  const [currentQuestionOrder, setCurrentQuestionOrder] = useState(FIRST_QUESTION_ORDER);
 
   const setReachedQuestion = useSetRecoilState(reachedQuestion);
   const setIs1MillionReachedValue = useSetRecoilState(is1MillionReached);
   const setIsGameOverTime = useSetRecoilState(isGameOverTime);
-
-  const [currentQuestionOrder, setCurrentQuestionOrder] = useState<number>(1);
 
   const [playBgSound, pauseBgSound] = useSound(SoundId.BG_SOUND);
   const [playGameOverSound] = useSound(SoundId.GAME_OVER);
@@ -76,6 +80,8 @@ export default function Game() {
     gameOver,
     TIME_OVER_DURATION_IN_SECONDS,
   );
+
+  useRedirectOnReload();
 
   useMount(() => {
     playBgSound();
