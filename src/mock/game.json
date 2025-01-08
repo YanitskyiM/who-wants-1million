@@ -2,38 +2,38 @@
   "questions": [
     {
       "id": "A",
-      "question": "Яка столиця Франції?",
+      "question": "What color is the sky on a sunny day?",
       "answers": [
-        { "id": "A", "text": "Париж" },
-        { "id": "B", "text": "Лондон" },
-        { "id": "C", "text": "Берлін" },
-        { "id": "D", "text": "Мадрид" }
+        { "id": "A", "text": "Green" },
+        { "id": "B", "text": "Blue" },
+        { "id": "C", "text": "Yellow" },
+        { "id": "D", "text": "Red" }
       ],
-      "correctAnswerIds": ["A"],
+      "correctAnswerIds": ["B"],
       "reward": 500,
       "order": 1
     },
     {
       "id": "B",
-      "question": "Скільки кольорів у веселці?",
+      "question": "What sound does a dog make?",
       "answers": [
-        { "id": "A", "text": "5" },
-        { "id": "B", "text": "7" },
-        { "id": "C", "text": "8" },
-        { "id": "D", "text": "10" }
+        { "id": "A", "text": "Meow" },
+        { "id": "B", "text": "Moo" },
+        { "id": "C", "text": "Woof" },
+        { "id": "D", "text": "Quack" }
       ],
-      "correctAnswerIds": ["B"],
+      "correctAnswerIds": ["C"],
       "reward": 1000,
       "order": 2
     },
     {
       "id": "C",
-      "question": "У якому році людина вперше ступила на Місяць?",
+      "question": "What is 1 + 1?",
       "answers": [
-        { "id": "A", "text": "1965" },
-        { "id": "B", "text": "1969" },
-        { "id": "C", "text": "1971" },
-        { "id": "D", "text": "1973" }
+        { "id": "A", "text": "1" },
+        { "id": "B", "text": "2" },
+        { "id": "C", "text": "3" },
+        { "id": "D", "text": "4" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 2000,
@@ -41,12 +41,12 @@
     },
     {
       "id": "D",
-      "question": "Який хімічний елемент має символ 'O'?",
+      "question": "What is the color of grass?",
       "answers": [
-        { "id": "A", "text": "Золото" },
-        { "id": "B", "text": "Кисень" },
-        { "id": "C", "text": "Осмій" },
-        { "id": "D", "text": "Олово" }
+        { "id": "A", "text": "Blue" },
+        { "id": "B", "text": "Green" },
+        { "id": "C", "text": "Yellow" },
+        { "id": "D", "text": "Red" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 4000,
@@ -54,25 +54,25 @@
     },
     {
       "id": "E",
-      "question": "Хто написав 'Гамлета'?",
+      "question": "How many legs does a spider have?",
       "answers": [
-        { "id": "A", "text": "Тарас Шевченко" },
-        { "id": "B", "text": "Вільям Шекспір" },
-        { "id": "C", "text": "Марк Твен" },
-        { "id": "D", "text": "Чарльз Діккенс" }
+        { "id": "A", "text": "4" },
+        { "id": "B", "text": "6" },
+        { "id": "C", "text": "8" },
+        { "id": "D", "text": "10" }
       ],
-      "correctAnswerIds": ["B"],
+      "correctAnswerIds": ["C"],
       "reward": 8000,
       "order": 5
     },
     {
       "id": "F",
-      "question": "Яка найбільша планета в Сонячній системі?",
+      "question": "What shape is a football?",
       "answers": [
-        { "id": "A", "text": "Земля" },
-        { "id": "B", "text": "Юпітер" },
-        { "id": "C", "text": "Марс" },
-        { "id": "D", "text": "Сатурн" }
+        { "id": "A", "text": "Square" },
+        { "id": "B", "text": "Circle" },
+        { "id": "C", "text": "Triangle" },
+        { "id": "D", "text": "Rectangle" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 16000,
@@ -80,12 +80,12 @@
     },
     {
       "id": "G",
-      "question": "Який газ є основним у складі Земної атмосфери?",
+      "question": "Which animal says 'Meow'?",
       "answers": [
-        { "id": "A", "text": "Кисень" },
-        { "id": "B", "text": "Азот" },
-        { "id": "C", "text": "Вуглекислий газ" },
-        { "id": "D", "text": "Гелій" }
+        { "id": "A", "text": "Dog" },
+        { "id": "B", "text": "Cat" },
+        { "id": "C", "text": "Duck" },
+        { "id": "D", "text": "Cow" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 32000,
@@ -93,12 +93,12 @@
     },
     {
       "id": "H",
-      "question": "У якому році була написана Декларація незалежності США?",
+      "question": "What is the color of a banana?",
       "answers": [
-        { "id": "A", "text": "1776" },
-        { "id": "B", "text": "1787" },
-        { "id": "C", "text": "1823" },
-        { "id": "D", "text": "1865" }
+        { "id": "A", "text": "Yellow" },
+        { "id": "B", "text": "Blue" },
+        { "id": "C", "text": "Green" },
+        { "id": "D", "text": "Red" }
       ],
       "correctAnswerIds": ["A"],
       "reward": 64000,
@@ -106,12 +106,12 @@
     },
     {
       "id": "I",
-      "question": "Хто є автором теорії відносності?",
+      "question": "What do bees make?",
       "answers": [
-        { "id": "A", "text": "Нікола Тесла" },
-        { "id": "B", "text": "Альберт Ейнштейн" },
-        { "id": "C", "text": "Ісаак Ньютон" },
-        { "id": "D", "text": "Макс Планк" }
+        { "id": "A", "text": "Milk" },
+        { "id": "B", "text": "Honey" },
+        { "id": "C", "text": "Juice" },
+        { "id": "D", "text": "Oil" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 125000,
@@ -119,12 +119,12 @@
     },
     {
       "id": "J",
-      "question": "Яка країна є найбільшим виробником кави у світі?",
+      "question": "What is 2 + 2?",
       "answers": [
-        { "id": "A", "text": "Україна" },
-        { "id": "B", "text": "Бразилія" },
-        { "id": "C", "text": "Польща" },
-        { "id": "D", "text": "США" }
+        { "id": "A", "text": "2" },
+        { "id": "B", "text": "4" },
+        { "id": "C", "text": "6" },
+        { "id": "D", "text": "8" }
       ],
       "correctAnswerIds": ["B"],
       "reward": 250000,
@@ -132,25 +132,25 @@
     },
     {
       "id": "K",
-      "question": "2 + 2 * 2 = ?",
+      "question": "What do cows drink?",
       "answers": [
-        { "id": "A", "text": "10" },
-        { "id": "B", "text": "2" },
-        { "id": "C", "text": "8" },
-        { "id": "D", "text": "6" }
+        { "id": "A", "text": "Milk" },
+        { "id": "B", "text": "Water" },
+        { "id": "C", "text": "Juice" },
+        { "id": "D", "text": "Tea" }
       ],
-      "correctAnswerIds": ["D"],
+      "correctAnswerIds": ["B"],
       "reward": 500000,
       "order": 11
     },
     {
-      "id": "l",
-      "question": "Що таке Монна Ліза?",
+      "id": "L",
+      "question": "What is the color of the sun?",
       "answers": [
-        { "id": "A", "text": "Книга" },
-        { "id": "B", "text": "Скульптура" },
-        { "id": "C", "text": "Картина" },
-        { "id": "D", "text": "Пісня" }
+        { "id": "A", "text": "Blue" },
+        { "id": "B", "text": "Red" },
+        { "id": "C", "text": "Yellow" },
+        { "id": "D", "text": "Green" }
       ],
       "correctAnswerIds": ["C"],
       "reward": 1000000,
